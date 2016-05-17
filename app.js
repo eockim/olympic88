@@ -63,7 +63,7 @@ app.use(function(err, req, res, next) {
 // lotto request
 var options = {
     //port: 1337,
-    mryhof : 'GET',
+    method : 'GET',
     hostname: 'www.nlotto.co.kr',
     path: '/common.do?method=getLottoNumber&drwNo='
     /*headers: {
@@ -72,27 +72,31 @@ var options = {
     }*/
 };
 
+var lottory = module.exports;
 var req = http.request(options, function(res){
 
-  //var lottoInfo = JSON.stringify(res);
-  console.log('HEADERS : ' + res.headers);
+  var recentLotto = {};
+
   res.setEncoding('utf8');
 
   res.on('data',  function(chunk){
-    console.log(chunk);
+    recentLotto = chunk;
+    //export recent()
+    lottory.recent = function(){
+      return recentLotto;
+    };
+    console.log('lotto json : ' + recentLotto );
   })
-});
 
+});
 req.on('error', (e) =>{
   console.log('problem with request ${e.message}');
 })
-
 req.end();
-
-module.exports = app;
 
 var server = app.listen(app.get('port'), function(){
   console.log('Express server listening on port : ' + server.address().port);
 });
+
 
 module.exports = app;
