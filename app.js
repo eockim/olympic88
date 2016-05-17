@@ -72,6 +72,12 @@ var options = {
     }*/
 };
 
+var Logger = require('./logs/logger.js');
+var logger = new Logger('my');
+
+logger.info('This is info');
+logger.debug('This is debug');
+
 var lottory = module.exports;
 var req = http.request(options, function(res){
 
