@@ -72,11 +72,13 @@ var options = {
     }*/
 };
 
-var Logger = require('./logs/logger.js');
-var logger = new Logger('my');
+var winston = require('./logs/logger.js');
 
-logger.info('This is info');
-logger.debug('This is debug');
+//logger.add(winston.transports.File).remove(winston.transports.Console);
+//logger.remove(winston.transports.Console);
+
+winston.info('information');
+winston.debug('debug log');
 
 var lottory = module.exports;
 var req = http.request(options, function(res){
