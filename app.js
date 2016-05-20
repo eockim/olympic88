@@ -8,7 +8,7 @@ var http = require('http');
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
-
+var winston = require('./logs/logger.js');
 var app = express();
 
 // view engine setup
@@ -72,13 +72,6 @@ var options = {
     }*/
 };
 
-var winston = require('./logs/logger.js');
-
-winston.info('information');
-winston.debug('debug log');
-winston.debug('debuging...');
-winston.debug('why');
-
 var lottory = module.exports;
 var req = http.request(options, function(res){
 
@@ -92,17 +85,17 @@ var req = http.request(options, function(res){
     lottory.recent = function(){
       return recentLotto;
     };
-    console.log('lotto json : ' + recentLotto );
+    winston.debug('lotto json : ' + recentLotto );
   })
 
 });
-req.on('error', (e) =>{
-  console.log('problem with request ${e.message}');
+req.on('error', function(e){
+  winston.debug('problem with request ' + e.message);
 })
 req.end();
 
 var server = app.listen(app.get('port'), function(){
-  console.log('Express server listening on port : ' + server.address().port);
+  winston.info('Express server listening on port : ' + server.address().port);
 });
 
 
