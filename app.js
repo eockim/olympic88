@@ -80,7 +80,18 @@ var req = http.request(options, function(res){
   res.setEncoding('utf8');
 
   res.on('data',  function(chunk){
-    recentLotto = chunk;
+
+    recentLotto = JSON.parse(chunk);
+
+    winston.info('chunk : ' + chunk)
+    winston.info('bonus No : '  + recentLotto['bnusNo']);
+    winston.info('No1 : '  + recentLotto['drwtNo1']);
+    winston.info('No2 : '  + recentLotto['drwtNo2']);
+    winston.info('No3 : '  + recentLotto['drwtNo3']);
+    winston.info('No4 : '  + recentLotto['drwtNo4']);
+    winston.info('No5 : '  + recentLotto['drwtNo5']);
+    winston.info('No6 : '  + recentLotto['drwtNo6']);
+
     //export recent()
     lottory.recent = function(){
       return recentLotto;
