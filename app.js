@@ -76,6 +76,8 @@ var winston = require('./logs/logger.js');
 
 winston.info('information');
 winston.debug('debug log');
+winston.debug('debuging...');
+winston.debug('why');
 
 var lottory = module.exports;
 var req = http.request(options, function(res){
