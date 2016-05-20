@@ -74,9 +74,6 @@ var options = {
 
 var winston = require('./logs/logger.js');
 
-//logger.add(winston.transports.File).remove(winston.transports.Console);
-//logger.remove(winston.transports.Console);
-
 winston.info('information');
 winston.debug('debug log');
 
