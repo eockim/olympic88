@@ -5,7 +5,9 @@ var app = require('../app.js');
 /* GET home page. */
 router.get('/', function(req, res, next) {
   res.render('index', {
-                        title: 'Lottory',
+                        title: 'SM: TL',
+                        drwNo : app.recent()['drwNo'],
+                        firstWinamnt : app.recent()['firstWinamnt'],
                         no1 : app.recent()['drwtNo1'],
                         no2 : app.recent()['drwtNo2'],
                         no3 : app.recent()['drwtNo3'],
