@@ -3,6 +3,7 @@
   <head>
     <title><%= title %></title>
     <link rel='stylesheet' href='/stylesheets/style.css' />
+    <script src='/javascripts/common.js'></script>
   </head>
   <body>
     <h1><%= title %></h1>
@@ -10,10 +11,10 @@
     <input type="text"></input>
     <input type="checkbox" name="name" value="">
     <label for="searchLotto">지난회차 검색</label>
-    <select name="" id="searchLotto">
+    <select name="" id="searchLotto" onchange="getLottoInfo(this.value);">
       <option value="">Select</option>
       <% for(var i=drwNo ; i>0 ; i--) { %>
-      <option value="" onchange=function(){ alert('ttt');}><%= i %></option>
+      <option value= "<%= i %>"><%= i %></option>
       <% } %>
     </select>
     <p> <%= drwNo %> 회차 로또 정보</p>
