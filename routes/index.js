@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var app = require('../app.js');
+var winston = require('../logs/logger.js');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -17,6 +18,11 @@ router.get('/', function(req, res, next) {
                         bonus : app.recent()['bnusNo']
                       }
             );
+});
+
+router.get('/lotto/:number', function(req, res){
+    winston.info('lotto');
+    res.send('server sending... data...')
 });
 
 module.exports = router;
