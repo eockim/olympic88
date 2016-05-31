@@ -22,7 +22,7 @@ router.get('/', function(req, res, next) {
 
 router.get('/lotto/:number', function(req, res){
     winston.info('req : ' + req);
-    var value = app.search('555555');
+    var value = app.search('201')['firstWinamnt'];
     res.send('server sending... data...' + value);
 });
 

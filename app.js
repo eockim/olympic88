@@ -107,7 +107,16 @@ req.end();
 
 lottory.search = function(value){
   options.path += value;
-  return options.path;
+  var searchLotto = {};
+  http.request(options, function(res){
+
+    res.setEncoding('utf8');
+
+    res.on('data', function(chunk){
+        searchLotto = JSON.parse(chunk);
+    })
+  })
+  return searchLotto;
 }
 
 var server = app.listen(app.get('port'), function(){
