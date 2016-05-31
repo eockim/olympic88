@@ -105,6 +105,11 @@ req.on('error', function(e){
 })
 req.end();
 
+lottory.search = function(value){
+  options.path += value;
+  return options.path;
+}
+
 var server = app.listen(app.get('port'), function(){
   winston.info('Express server listening on port : ' + server.address().port);
 });

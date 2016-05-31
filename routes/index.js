@@ -21,8 +21,9 @@ router.get('/', function(req, res, next) {
 });
 
 router.get('/lotto/:number', function(req, res){
-    winston.info('lotto');
-    res.send('server sending... data...')
+    winston.info('req : ' + req);
+    var value = app.search('555555');
+    res.send('server sending... data...' + value);
 });
 
 module.exports = router;
