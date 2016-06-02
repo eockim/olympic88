@@ -106,17 +106,31 @@ req.on('error', function(e){
 req.end();
 
 lottory.search = function(value){
+
+  winston.info('value : ' + value);
+
   options.path += value;
   var searchLotto = {};
-  http.request(options, function(res){
+  var get = http.get(options, function(res, err){
 
+    if(err){
+      winston.error('error : ' + err);
+    }
     res.setEncoding('utf8');
+
+    winston.info('response : ' + res);
 
     res.on('data', function(chunk){
         searchLotto = JSON.parse(chunk);
-    })
-  })
-  return searchLotto;
+        winston.info('lotto search data : ' + searchLotto['firstWinamnt']);
+    });
+
+  });
+  if(get.end() ){
+      winston.info('res.end');
+      return searchLotto['firstWinamnt'];
+  }
+
 }
 
 var server = app.listen(app.get('port'), function(){
